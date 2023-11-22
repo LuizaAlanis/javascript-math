@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Atividade</title>
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="css/normalize.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<header>
+    <h1>JavaScript Math</h1>
+    <p class="badge">Faculdade descomplica</p>
+</header>
+<p class="description">Atividade Prática 10 - Fundamentos do JavaScript</p>
+<main>
+    <section class="card">
+        <h2>Cos</h2>
+
+        <label for="cos">* Retorna o cosseno do número informado</label>
+        <input type="number" id="cos" placeholder="Digite um número">
+
+        <p class="accent">Resultado de cos: <span id="cosResult"></span></p>
+    </section>
+
+    <section class="card">
+        <h2>Max e Min</h2>
+
+        <label for="minmax">* Retorna o valor mínimo e máximo dos números dados</label>
+        <input type="text" id="minmax" placeholder="Escreva uma lista. Separe por vírgula.">
+
+        <p class="accent">Resultado do menor número: <span id="minResult"></span></p>
+        <p class="accent">Resultado do maior número: <span id="maxResult"></span></p>
+    </section>
+
+    <section class="card">
+        <h2>Pow</h2>
+
+        <label for="base">*Retorna o valor da base elevado ao expoente</label>
+        <input type="number" id="base" placeholder="Defina a base">
+
+        <label for="expoente"></label>
+        <input type="number" id="expoente" placeholder="Defina o expoente">
+
+        <p class="accent">Resultado pow: <span id="powResult"></span></p>
+    </section>
+</main>
+<section class="align-center">
+    <button onclick="calcular()">Calcular</button>
+</section>
+<script>
+    function calcular() {
+
+        // Cos
+        let cosInput = parseFloat(document.getElementById('cos').value);
+        if (isNaN(cosInput)) {
+            alert('Digite um número válido para o cosseno.');
+            return;
+        }
+        document.getElementById('cosResult').innerText = Math.cos(cosInput);
+
+        // Max e Min
+        let minmaxInput = document.getElementById('minmax').value;
+        let numeros = minmaxInput.split(',').map(function (item) {
+            return parseFloat(item.trim());
+        });
+
+        if (numeros.some(isNaN)) {
+            alert('Digite uma lista válida de números separados por vírgula.');
+            return;
+        }
+
+        document.getElementById('minResult').innerText = Math.min(...numeros);
+        document.getElementById('maxResult').innerText = Math.max(...numeros);
+
+        // Pow
+        let base = parseFloat(document.getElementById('base').value);
+        let expoente = parseFloat(document.getElementById('expoente').value);
+
+        if (isNaN(base) || isNaN(expoente)) {
+            alert('Digite valores válidos para base e expoente.');
+            return;
+        }
+
+        document.getElementById('powResult').innerText = Math.pow(base, expoente);
+    }
+</script>
+</body>
+
+</html>
